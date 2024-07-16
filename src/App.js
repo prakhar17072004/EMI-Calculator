@@ -17,7 +17,9 @@ const CalculateEmi=()=>{
   const rate = interstRate/12/100
   //duration
    const noOfmonth = duration*12
-   //emi value
+
+   if(principal>0 && interstRate>0 && duration>0  ){
+    //emi value
 
    const emivalue = (principal*rate*Math.pow(1+rate,noOfmonth))/(Math.pow(1+rate,noOfmonth)-1);
    const totalPaymentValue = emivalue*noOfmonth;
@@ -26,6 +28,14 @@ const CalculateEmi=()=>{
    setTotalPayments(totalPaymentValue.toFixed(2));
    setTotalInterst(totalInterstValue.toFixed(2));
 
+   }else{
+    setEmi(0);
+    setPrincipal(0);
+    setTotalInterst(0);
+    setTotalPayments(0);
+    setDuration(0);
+   }
+   
 
 }
  //submit handler
@@ -40,8 +50,8 @@ const CalculateEmi=()=>{
 
 
   return (
-    <div className="App bg-slate-600">
-      <header className="p-12 font-bold text-[20px] text-white bg-yellow-900">EMI CALCULATOR</header>
+    <div className="App bg">
+      <header className="p-12 font-bold text-[20px] text-white heading">EMI CALCULATOR</header>
       {/*Main part*/}
       <div className="flex w-[80vw] h-[100vh] mx-auto space-x-2 ">
       
